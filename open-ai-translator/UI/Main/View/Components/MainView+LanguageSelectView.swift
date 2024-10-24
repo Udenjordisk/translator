@@ -12,7 +12,7 @@ extension MainView.ContentView {
         @EnvironmentObject var viewModel: MainViewModel
         
         var body: some View {
-            HStack(alignment: .center, spacing: 8.0) {
+            HStack(alignment: .center, spacing: .spacing8) {
                 LanguageMenuButton(
                     selectedLanguage: $viewModel.sourceLanguage,
                     languages: viewModel.languages
@@ -22,7 +22,7 @@ extension MainView.ContentView {
                     viewModel.swapLanguages()
                 } label: {
                     Image(systemName: "arrow.left.arrow.right")
-                        .frame(width: 24.0, height: 24.0)
+                        .frame(width: .spacing24, height: .spacing24)
                         .foregroundStyle(.gray)
                 }
 
@@ -47,10 +47,11 @@ extension MainView.ContentView.LanguagesSelectView {
                         Button {
                             selectedLanguage = language
                         } label:{
-                            Label(
-                                language,
-                                systemImage: selectedLanguage == language ? "checkmark" : ""
-                            )
+                            if selectedLanguage == language {
+                                Label(language, systemImage: "checkmark")
+                            } else {
+                                Text(language)
+                            }
                         }
                     }
                 }
@@ -59,9 +60,9 @@ extension MainView.ContentView.LanguagesSelectView {
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity)
                     .foregroundColor(.white)
-                    .padding(8.0)
+                    .padding(.spacing8)
                     .background(Color.buttonBackground)
-                    .cornerRadius(8)
+                    .cornerRadius(.spacing8)
             }
         }
     }

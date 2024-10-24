@@ -10,14 +10,14 @@ import SwiftUI
 extension MainView {
     struct SkeletonView: View {
         var body: some View {
-            VStack(spacing: 24) {
+            VStack(spacing: .spacing24) {
                 Skeleton()
                     .frame(height: .inputSkeletonHeight)
                     
                 Skeleton()
-                    .frame(height: .languageSelectSkeletonHeight)
+                    .frame(height: .spacing32)
             }
-            .padding(.horizontal, 16)
+            .padding(.horizontal, .spacing16)
         }
     }
     
@@ -25,15 +25,13 @@ extension MainView {
         var body: some View {
             Rectangle()
                 .fill(Color.lightGray)
-                .cornerRadius(.cornerRadius)
+                .cornerRadius(.spacing12)
         }
     }
 }
 
 private extension CGFloat {
-    static let cornerRadius = 12.0
     static let inputSkeletonHeight = 150.0
-    static let languageSelectSkeletonHeight = 32.0
 }
 
 private extension Color {

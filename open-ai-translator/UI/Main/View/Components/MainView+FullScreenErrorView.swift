@@ -12,22 +12,22 @@ extension MainView {
         @EnvironmentObject var viewModel: MainViewModel
         
         var body: some View {
-            VStack(alignment: .center, spacing: 24) {
+            VStack(alignment: .center, spacing: .spacing24) {
                 Spacer()
                 
                 Image(systemName: "exclamationmark.icloud.fill")
                     .resizable()
                     .scaledToFit()
-                    .frame(height: 150)
+                    .frame(height: .imageHeight)
                     .foregroundStyle(.yellow)
                     .symbolRenderingMode(.multicolor)
                 
                 Text("Упс...")
-                    .font(.system(size: 48))
+                    .font(.system(size: .spacing48))
                     .fontWeight(.bold)
 
                 Text("Что-то пошло не так. Попробуйте позже через некоторое время.")
-                    .font(.system(size: 24))
+                    .font(.system(size: .spacing24))
                     .fontWeight(.medium)
                     .multilineTextAlignment(.center)
                     .foregroundStyle(.secondary)
@@ -39,14 +39,18 @@ extension MainView {
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity)
                         .foregroundColor(.white)
-                        .padding(12.0)
+                        .padding(.spacing12)
                         .background(Color.blue)
-                        .cornerRadius(8)
-                        .padding(.horizontal, 16)
+                        .cornerRadius(.spacing8)
+                        .padding(.horizontal, .spacing16)
                 }
                 
                 Spacer()
             }
         }
     }
+}
+
+private extension CGFloat {
+    static let imageHeight = 150.0
 }

@@ -30,7 +30,7 @@ extension MainView {
                         }
                     } label: {
                         Image(systemName: "gearshape.fill")
-                            .frame(width: 24.0, height: 24.0)
+                            .frame(width: .spacing24, height: .spacing24)
                             .foregroundStyle(.gray)
                     }
                 }

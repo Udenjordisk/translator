@@ -38,7 +38,7 @@ extension MainView.ContentView.InputView {
                         Text(placeholder)
                             .foregroundStyle(.gray)
                             .padding(.leading, .placeholderLeadingPadding)
-                            .padding(.top, 12)
+                            .padding(.top, .spacing12)
                     }
                     
                     HStack(alignment: .top) {
@@ -57,16 +57,16 @@ extension MainView.ContentView.InputView {
                             } label: {
                                 Image(systemName: buttonIconName)
                                     .fontWeight(.medium)
-                                    .frame(width: 24.0, height: 24.0)
+                                    .frame(width: .spacing24, height: .spacing24)
                                     .foregroundStyle(.gray)
                             }
-                            .padding(.top, 4)
+                            .padding(.top, .spacing4)
                         }
                     }
-                    .padding(4)
+                    .padding(.spacing4)
                 }
             }
-            .padding(12)
+            .padding(.spacing12)
         }
         
         /// `TextEditor` в SwiftUI не умеет нативно скрывать клавиатуру по нажатию на кнопку Done и чтобы

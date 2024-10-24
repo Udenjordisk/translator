@@ -14,7 +14,7 @@ extension MainView.ContentView {
         var body: some View {
             if !viewModel.meanings.isEmpty {
                 ForEach(viewModel.meanings, id: \.self) { meaning in
-                    VStack(alignment: .leading, spacing: 4) {
+                    VStack(alignment: .leading, spacing: .spacing4) {
                         Text(meaning.title)
                             .foregroundStyle(.black)
                             .fontWeight(.medium)

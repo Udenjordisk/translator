@@ -33,5 +33,3 @@ struct MainView: View {
         .environmentObject(viewModel)
     }
 }
-
-//#Preview { MainView() }

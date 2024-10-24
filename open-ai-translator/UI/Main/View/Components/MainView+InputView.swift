@@ -29,11 +29,11 @@ extension MainView.ContentView {
                 
                 if isNeedToShowSecondLevel {
                     Divider()
-                        .padding(12)
+                        .padding(.spacing12)
                     
                     if viewModel.isTranslationError {
                         TranslationErrorView()
-                            .padding(.vertical, 12)
+                            .padding(.vertical, .spacing12)
                     } else {
                         TextBlockItem(
                             text: $viewModel.translatedText,
@@ -48,7 +48,7 @@ extension MainView.ContentView {
                 }
             }
             .background(Color.textEditorBackground)
-            .cornerRadius(12)
+            .cornerRadius(.spacing12)
         }
     }
 }
@@ -58,7 +58,7 @@ extension MainView.ContentView.InputView {
         @EnvironmentObject var viewModel: MainViewModel
 
         var body: some View {
-            VStack(alignment: .center, spacing: 8) {
+            VStack(alignment: .center, spacing: .spacing8) {
                 Text("Что-то пошло не так. Попробуйте позже через некоторое время.")
                     .fontWeight(.medium)
                     .multilineTextAlignment(.center)
@@ -71,7 +71,7 @@ extension MainView.ContentView.InputView {
                         .fontWeight(.semibold)
                         .frame(maxWidth: .infinity)
                         .foregroundColor(Color.blue)
-                        .padding(.horizontal, 16)
+                        .padding(.horizontal, .spacing16)
                 }
             }
         }

@@ -12,24 +12,24 @@ extension MainView {
         @EnvironmentObject var viewModel: MainViewModel
         
         var body: some View {
-            VStack(alignment: .leading, spacing: 24) {
+            VStack(alignment: .leading, spacing: .spacing24) {
                 NavigationBarView()
                 
                 InputView()
                 
                 if viewModel.isOriginalLanguageEnabled {
                     OriginalLanguageView()
-                        .padding(.leading, 8)
+                        .padding(.leading, .spacing8)
                 }
                 
                 if viewModel.isMeaningsEnabled {
                     MeaningsView()
-                        .padding(.leading, 8)
+                        .padding(.leading, .spacing8)
                 }
                 
                 LanguagesSelectView()
             }
-            .padding(.horizontal, 16.0)
+            .padding(.horizontal, .spacing16)
         }
     }
 }
