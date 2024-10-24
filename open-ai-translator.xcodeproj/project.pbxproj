@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		3F14D4BE2CCAEA7D0007FEEC /* BetterCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 3F14D4BD2CCAEA7D0007FEEC /* BetterCodable */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		3F6F7FEF2CC94D800073AE80 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -39,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F14D4BE2CCAEA7D0007FEEC /* BetterCodable in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +95,7 @@
 			);
 			name = "open-ai-translator";
 			packageProductDependencies = (
+				3F14D4BD2CCAEA7D0007FEEC /* BetterCodable */,
 			);
 			productName = "open-ai-translator";
 			productReference = 3F6F7FDE2CC94D7E0073AE80 /* open-ai-translator.app */;
@@ -146,6 +152,9 @@
 			);
 			mainGroup = 3F6F7FD52CC94D7E0073AE80;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				3F14D4BC2CCAEA7D0007FEEC /* XCRemoteSwiftPackageReference "BetterCodable" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3F6F7FDF2CC94D7E0073AE80 /* Products */;
 			projectDirPath = "";
@@ -444,6 +453,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3F14D4BC2CCAEA7D0007FEEC /* XCRemoteSwiftPackageReference "BetterCodable" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marksands/BetterCodable";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3F14D4BD2CCAEA7D0007FEEC /* BetterCodable */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F14D4BC2CCAEA7D0007FEEC /* XCRemoteSwiftPackageReference "BetterCodable" */;
+			productName = BetterCodable;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3F6F7FD62CC94D7E0073AE80 /* Project object */;
 }

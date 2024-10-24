@@ -22,9 +22,8 @@ struct MainView: View {
                     }
                 
             case .content:
-                ForEach(viewModel.languages, id: \.self) {
-                    Text($0)
-                }
+                ContentView()
+                    .environmentObject(viewModel)
             case .error:
                 EmptyView()
             }
