@@ -19,7 +19,7 @@ extension MainViewModel {
         
         let model = MainViewModel(openAIService: service)
         
-        model.inputText = sourceInputText
+        model.sourceText = sourceInputText
         model.sourceLanguage = sourceLanguage
         model.targetLanguage = targetLanguage
         

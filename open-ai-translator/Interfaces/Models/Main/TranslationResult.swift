@@ -22,7 +22,7 @@ struct TranslationResult: Decodable {
 }
 
 extension TranslationResult {
-    struct Meaning: Decodable {
+    struct Meaning: Decodable, Hashable {
         var title: String
         var description: String
     }

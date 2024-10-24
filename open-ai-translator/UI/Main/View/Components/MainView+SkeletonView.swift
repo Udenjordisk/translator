@@ -10,23 +10,14 @@ import SwiftUI
 extension MainView {
     struct SkeletonView: View {
         var body: some View {
-            VStack(spacing: .vStackSpacing) {
-                SkeletonBlock()
-                SkeletonBlock()
-            }
-        }
-    }
-    
-    struct SkeletonBlock: View {
-        var body: some View {
-            VStack {
+            VStack(spacing: 24) {
                 Skeleton()
-                    .frame(height: .smallSkeletonHeight)
-                    .padding(.trailing, .smallSkeletonTrailingPadding)
+                    .frame(height: .inputSkeletonHeight)
                     
                 Skeleton()
-                    .frame(height: .largeSkeletonHeight)
+                    .frame(height: .languageSelectSkeletonHeight)
             }
+            .padding(.horizontal, 16)
         }
     }
     
@@ -41,10 +32,8 @@ extension MainView {
 
 private extension CGFloat {
     static let cornerRadius = 12.0
-    static let smallSkeletonHeight = 32.0
-    static let smallSkeletonTrailingPadding = 100.0
-    static let largeSkeletonHeight = 200.0
-    static let vStackSpacing = 24.0
+    static let inputSkeletonHeight = 150.0
+    static let languageSelectSkeletonHeight = 32.0
 }
 
 private extension Color {

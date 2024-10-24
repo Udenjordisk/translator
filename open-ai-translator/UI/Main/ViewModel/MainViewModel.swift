@@ -26,8 +26,10 @@ final class MainViewModel: ObservableObject {
     @Published var targetLanguage: String = ""
     @Published var originalLanguage: String? = nil
     
-    @Published var inputText: String = ""
+    @Published var sourceText: String = ""
     @Published var translatedText: String = ""
+    @Published var transcription: String? = nil
+    @Published var meanings: [TranslationResult.Meaning] = []
     
     private var subscriptions = Set<AnyCancellable>()
 
@@ -35,8 +37,40 @@ final class MainViewModel: ObservableObject {
         self.openAIService = openAIService
     }
     
+    func viewWillAppear() async {
+        await loadLanguages()
+        subscribe()
+    }
+    
+    @MainActor
+    func updateState(_ newValue: State) {
+        state = newValue
+    }
+    
+    @MainActor
+    func swapLanguages() {
+        swap(&sourceLanguage, &targetLanguage)
+        swap(&sourceText, &translatedText)
+    }
+    
+    @MainActor
+    func updateSourceLanguage(_ newValue: String) {
+        sourceLanguage = newValue
+    }
+    
+    func copy() {
+        UIPasteboard.general.string = translatedText
+    }
+    
+    @MainActor
+    func clear() {
+        sourceText.removeAll()
+    }
+}
+
+private extension MainViewModel {
     func subscribe() {
-        Publishers.CombineLatest3($inputText, $sourceLanguage, $targetLanguage)
+        Publishers.CombineLatest3($sourceText, $sourceLanguage, $targetLanguage)
             .dropFirst()
             .debounce(for: 0.3, scheduler: DispatchQueue.main)
             .sink { [weak self] text, sourceLanguage, targetLanguage in
@@ -53,28 +87,6 @@ final class MainViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
     
-    func viewWillAppear() async {
-        await loadLanguages()
-        subscribe()
-    }
-    
-    @MainActor
-    func swapLanguages() {
-        swap(&sourceLanguage, &targetLanguage)
-    }
-}
-
-extension MainViewModel {
-    func copy() {
-        UIPasteboard.general.string = translatedText
-    }
-    
-    func clear() {
-        sourceLanguage = ""
-    }
-}
-
-private extension MainViewModel {
     func translate(_ text: String, from sourceLanguage: String, to targetLanguage: String) async {
         guard !text.isEmpty else {
             Task { @MainActor in
@@ -90,14 +102,21 @@ private extension MainViewModel {
                 targetLanguage: targetLanguage
             )
             
-            Task { @MainActor in
-                translatedText = result.translatedText
-                originalLanguage = result.originalLanguage
-            }
+            await handleTranslationResult(result)
         } catch {
             print(error)
             // translation error
         }
+    }
+    
+    @MainActor
+    func handleTranslationResult(_ result: TranslationResult) {
+        guard !sourceText.isEmpty else { return }
+        
+        translatedText = result.translatedText
+        originalLanguage = result.originalLanguage
+        meanings = result.meanings
+        transcription = result.transcription
     }
 }
 
@@ -127,10 +146,5 @@ private extension MainViewModel {
         targetLanguage = self.languages.dropFirst().first ?? ""
         
         updateState(.content)
-    }
-    
-    @MainActor
-    func updateState(_ newValue: State) {
-        state = newValue
     }
 }

@@ -12,8 +12,14 @@ extension MainView {
         @EnvironmentObject var viewModel: MainViewModel
         
         var body: some View {
-            VStack(alignment: .center, spacing: 24) {
+            VStack(alignment: .leading, spacing: 24) {
                 InputView()
+                
+                OriginalLanguageView()
+                    .padding(.leading, 8)
+                
+                MeaningsView()
+                    .padding(.leading, 8)
                 
                 LanguagesSelectView()
             }

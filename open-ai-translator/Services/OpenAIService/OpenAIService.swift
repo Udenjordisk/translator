@@ -77,30 +77,39 @@ private extension OpenAIMessage {
         [
             OpenAIMessage(
                 role: "system",
-                content: "You are a translation assistant that provides translations in JSON format.")
-            ,
+                content: "You are a translation assistant that provides translations in JSON format."
+            ),
             OpenAIMessage(
                 role: "user",
                 content: """
-                    The source language is \(sourceLanguage). Please translate the following text to \(targetLanguage): "\(text)".
-                    
-                    If the language of the input text is not \(sourceLanguage), return the result in the following JSON format:
-                    
+                The source language is \(sourceLanguage). Please translate the following text to \(targetLanguage): "\(text)".
+
+                If the input text is meaningful and has dictionary definitions, return the result in the following JSON format, where "meanings" are provided in the source language (\(sourceLanguage)):
+
+                {
+                  "translatedText": "TRANSLATED_TEXT",
+                  "transcription": "TRANSCRIPTION_IF_AVAILABLE",
+                  "meanings": [
                     {
-                      "translatedText": "TRANSLATED_TEXT",
-                      "transcription": "TRANSCRIPTION_IF_AVAILABLE",
-                      "meanings": [
-                        {
-                          "title": "TITLE",
-                          "description": "DESCRIPTION"
-                        }
-                      ],
-                      "originalLanguage": "ORIGINAL_LANGUAGE"
+                      "title": "TITLE_IN_SOURCE_LANGUAGE",
+                      "description": "DESCRIPTION_IN_SOURCE_LANGUAGE"
                     }
-                    
-                    If the input text is already in \(sourceLanguage), return the JSON without the "originalLanguage" field. Do not include any extra text or explanations. The response should be valid JSON.
-                    """
-                )
+                  ],
+                  "originalLanguage": "ORIGINAL_LANGUAGE"
+                }
+
+                If the input text has no meanings or is not meaningful, return the result without the "meanings" field:
+
+                {
+                  "translatedText": "TRANSLATED_TEXT",
+                  "transcription": "TRANSCRIPTION_IF_AVAILABLE",
+                  "originalLanguage": "ORIGINAL_LANGUAGE"
+                }
+
+                If the input text is already in \(sourceLanguage), return the JSON without the "originalLanguage" field. Do not include any extra text or explanations. The response should be valid JSON.
+                """
+            )
         ]
+
     }
 }
