@@ -13,13 +13,19 @@ extension MainView {
         
         var body: some View {
             VStack(alignment: .leading, spacing: 24) {
+                NavigationBarView()
+                
                 InputView()
                 
-                OriginalLanguageView()
-                    .padding(.leading, 8)
+                if viewModel.isOriginalLanguageEnabled {
+                    OriginalLanguageView()
+                        .padding(.leading, 8)
+                }
                 
-                MeaningsView()
-                    .padding(.leading, 8)
+                if viewModel.isMeaningsEnabled {
+                    MeaningsView()
+                        .padding(.leading, 8)
+                }
                 
                 LanguagesSelectView()
             }

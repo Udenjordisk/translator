@@ -30,6 +30,11 @@ final class MainViewModel: ObservableObject {
     @Published var translatedText: String = ""
     @Published var isTranslationError: Bool = false
     @Published var transcription: String? = nil
+    
+    @Published var isTranscriptionEnabled: Bool = true
+    @Published var isMeaningsEnabled: Bool = false
+    @Published var isOriginalLanguageEnabled: Bool = false
+    
     @Published var meanings: [TranslationResult.Meaning] = []
     
     private var subscriptions = Set<AnyCancellable>()
