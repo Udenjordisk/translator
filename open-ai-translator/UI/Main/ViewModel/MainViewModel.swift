@@ -28,6 +28,7 @@ final class MainViewModel: ObservableObject {
     
     @Published var sourceText: String = ""
     @Published var translatedText: String = ""
+    @Published var isTranslationError: Bool = false
     @Published var transcription: String? = nil
     @Published var meanings: [TranslationResult.Meaning] = []
     
@@ -65,6 +66,10 @@ final class MainViewModel: ObservableObject {
     @MainActor
     func clear() {
         sourceText.removeAll()
+    }
+    
+    func reloadTranslation() async {
+        await translate(sourceText, from: sourceLanguage, to: targetLanguage)
     }
 }
 
@@ -104,8 +109,9 @@ private extension MainViewModel {
             
             await handleTranslationResult(result)
         } catch {
-            print(error)
-            // translation error
+            Task { @MainActor in
+                isTranslationError = true
+            }
         }
     }
     
@@ -117,6 +123,8 @@ private extension MainViewModel {
         originalLanguage = result.originalLanguage
         meanings = result.meanings
         transcription = result.transcription
+        
+        isTranslationError = false
     }
 }
 

@@ -23,14 +23,14 @@ struct MainView: View {
                 
             case .content:
                 ContentView()
-                    .environmentObject(viewModel)
+                    
             case .error:
-                EmptyView()
+                FullScreenErrorView()
             }
-            
             
             Spacer()
         }
+        .environmentObject(viewModel)
     }
 }
 
