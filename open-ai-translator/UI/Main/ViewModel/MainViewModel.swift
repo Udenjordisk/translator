@@ -15,8 +15,6 @@ final class MainViewModel: ObservableObject {
         case content
         case error
     }
-
-    private let openAIService: IOpenAIService
     
     @Published var state: State = .loading
     
@@ -37,6 +35,7 @@ final class MainViewModel: ObservableObject {
     
     @Published var meanings: [TranslationResult.Meaning] = []
     
+    private let openAIService: IOpenAIService
     private var subscriptions = Set<AnyCancellable>()
 
     init(openAIService: IOpenAIService) {

@@ -13,20 +13,24 @@ extension MainView.ContentView {
 
         var body: some View {
             if !viewModel.meanings.isEmpty {
-                ForEach(viewModel.meanings, id: \.self) { meaning in
-                    VStack(alignment: .leading, spacing: .spacing4) {
-                        Text(meaning.title)
-                            .foregroundStyle(.black)
-                            .fontWeight(.medium)
-                        
-                        Text(meaning.description)
-                            .foregroundStyle(.gray)
-                            .fontDesign(.serif)
-                            .lineLimit(nil)
-                            .fixedSize(horizontal: false, vertical: true)
-                        
-                        if viewModel.meanings.count > 1, meaning != viewModel.meanings.last {
-                            Divider()
+                VStack(alignment: .leading, spacing: .spacing4) {
+                    ForEach(viewModel.meanings, id: \.self) { meaning in
+                        VStack(alignment: .leading, spacing: .spacing4) {
+                            Text(meaning.title)
+                                .foregroundStyle(.black)
+                                .fontWeight(.medium)
+                                .font(.system(size: 16))
+
+                            Text(meaning.description)
+                                .foregroundStyle(.gray)
+                                .fontDesign(.serif)
+                                .font(.system(size: 14))
+                                .lineLimit(nil)
+                                .fixedSize(horizontal: false, vertical: true)
+                            
+                            if viewModel.meanings.count > 1, meaning != viewModel.meanings.last {
+                                Divider()
+                            }
                         }
                     }
                 }

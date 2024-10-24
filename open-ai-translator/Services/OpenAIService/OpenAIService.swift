@@ -77,28 +77,36 @@ private extension OpenAIMessage {
         [
             OpenAIMessage(
                 role: "system",
-                content: "You are a translation assistant that provides translations in JSON format."
+                content: "You are a translation and explanation assistant that provides translations and definitions in JSON format."
             ),
             OpenAIMessage(
                 role: "user",
                 content: """
                 The source language is \(sourceLanguage). Please translate the following text to \(targetLanguage): "\(text)".
 
-                If the input text is meaningful and has dictionary definitions, return the result in the following JSON format, where "meanings" are provided in the source language (\(sourceLanguage)):
+                If the input text is a complete word or phrase and has one or more meanings, return the result in the following JSON format with no more than 3 meanings:
 
                 {
                   "translatedText": "TRANSLATED_TEXT",
                   "transcription": "TRANSCRIPTION_IF_AVAILABLE",
                   "meanings": [
                     {
-                      "title": "TITLE_IN_SOURCE_LANGUAGE",
-                      "description": "DESCRIPTION_IN_SOURCE_LANGUAGE"
+                      "title": "TITLE_IN_\(sourceLanguage)",
+                      "description": "DESCRIPTION_IN_\(sourceLanguage)"
+                    },
+                    {
+                      "title": "ANOTHER_TITLE_IN_\(sourceLanguage)",
+                      "description": "ANOTHER_DESCRIPTION_IN_\(sourceLanguage)"
+                    },
+                    {
+                      "title": "THIRD_TITLE_IN_\(sourceLanguage)",
+                      "description": "THIRD_DESCRIPTION_IN_\(sourceLanguage)"
                     }
                   ],
                   "originalLanguage": "ORIGINAL_LANGUAGE"
                 }
 
-                If the input text has no meanings or is not meaningful, return the result without the "meanings" field:
+                If the input text has no meaning, is gibberish, or is a numerical expression, return the result without the "meanings" field:
 
                 {
                   "translatedText": "TRANSLATED_TEXT",
@@ -110,6 +118,5 @@ private extension OpenAIMessage {
                 """
             )
         ]
-
     }
 }

@@ -12,22 +12,27 @@ extension MainView {
         @EnvironmentObject var viewModel: MainViewModel
         
         var body: some View {
-            VStack(alignment: .leading, spacing: .spacing24) {
+            VStack(alignment: .center, spacing: .spacing24) {
                 NavigationBarView()
                 
-                InputView()
-                
-                if viewModel.isOriginalLanguageEnabled {
-                    OriginalLanguageView()
-                        .padding(.leading, .spacing8)
+                ScrollView {
+                    VStack(alignment: .leading, spacing: .spacing24) {
+                        InputView()
+                        
+                        if viewModel.isOriginalLanguageEnabled {
+                            OriginalLanguageView()
+                                .padding(.leading, .spacing8)
+                        }
+                        
+                        LanguagesSelectView()
+                        
+                        if viewModel.isMeaningsEnabled {
+                            MeaningsView()
+                                .padding(.leading, .spacing8)
+                        }
+                    }
                 }
-                
-                if viewModel.isMeaningsEnabled {
-                    MeaningsView()
-                        .padding(.leading, .spacing8)
-                }
-                
-                LanguagesSelectView()
+                .scrollIndicators(.hidden)
             }
             .padding(.horizontal, .spacing16)
         }
