@@ -21,7 +21,7 @@ extension MainView.ContentView {
                 Button {
                     viewModel.swapLanguages()
                 } label: {
-                    Image(systemName: "arrow.left.arrow.right")
+                    Image(systemName: .swap)
                         .frame(width: .spacing24, height: .spacing24)
                         .foregroundStyle(.gray)
                 }
@@ -48,7 +48,7 @@ extension MainView.ContentView.LanguagesSelectView {
                             selectedLanguage = language
                         } label:{
                             if selectedLanguage == language {
-                                Label(language, systemImage: "checkmark")
+                                Label(language, systemImage: .checkmark)
                             } else {
                                 Text(language)
                             }
@@ -66,6 +66,11 @@ extension MainView.ContentView.LanguagesSelectView {
             }
         }
     }
+}
+
+private extension String {
+    static let swap = "arrow.left.arrow.right"
+    static let checkmark = "checkmark"
 }
 
 private extension Color {

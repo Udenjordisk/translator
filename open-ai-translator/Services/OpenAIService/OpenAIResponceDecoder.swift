@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Сервис для обработки ответа от OpenAI API  и декодинга ответа в нужную нам модель
 final class OpenAIResponceDecoder: IOpenAIResponceDecoder {
     func decode<D: Decodable>(_ value: OpenAIResponse) throws -> D {
         guard

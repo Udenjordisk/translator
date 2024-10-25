@@ -8,15 +8,13 @@
 import SwiftUI
 
 struct MainAssembly {
-    var openAIService: IOpenAIService {
-        OpenAIService(
+    func assemble() -> some View {
+        let service = OpenAIService(
             provider: AsyncNetworkProvider(),
             decoder: OpenAIResponceDecoder()
         )
-    }
-    
-    func assemble() -> some View {
-        let viewModel = MainViewModel(openAIService: openAIService)
+        
+        let viewModel = MainViewModel(openAIService: service)
         
         let view = MainView(viewModel: viewModel)
         

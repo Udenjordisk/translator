@@ -58,7 +58,7 @@ extension MainView.ContentView {
                         Text(transcription)
                             .foregroundStyle(.gray)
                             .fontDesign(.serif)
-                            .font(.system(size: 14))
+                            .font(.transcription)
                             .padding(.horizontal, .spacing16)
                             .padding(.bottom, .spacing12)
                     }
@@ -74,31 +74,6 @@ extension MainView.ContentView {
     }
 }
 
-extension MainView.ContentView.InputView {
-    struct TranslationErrorView: View {
-        @EnvironmentObject var viewModel: MainViewModel
-        
-        var body: some View {
-            VStack(alignment: .center, spacing: .spacing8) {
-                Text("Что-то пошло не так. Попробуйте позже через некоторое время.")
-                    .fontWeight(.medium)
-                    .multilineTextAlignment(.center)
-                    .foregroundStyle(.secondary)
-                
-                Button {
-                    Task { await viewModel.reloadTranslation() }
-                } label: {
-                    Text("Попробовать еще раз")
-                        .fontWeight(.semibold)
-                        .frame(maxWidth: .infinity)
-                        .foregroundColor(Color.blue)
-                        .padding(.horizontal, .spacing16)
-                }
-            }
-        }
-    }
-}
-
 private extension String {
     static let closeIcon = "xmark"
     static let copyIcon = "document"
@@ -110,4 +85,8 @@ private extension Color {
 
 private extension CGFloat {
     static let textEditorHeight: CGFloat = 150.0
+}
+
+private extension Font {
+    static let transcription = Self.system(size: 14.0)
 }

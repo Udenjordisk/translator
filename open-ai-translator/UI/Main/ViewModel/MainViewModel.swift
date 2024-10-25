@@ -162,13 +162,15 @@ private extension MainViewModel {
     
     @MainActor
     func handleLanguagesResult(_ result: LanguagesList) async {
-        
         self.languages = result.languages
         
-        // TODO: - Сохранение значений в AppStorage
-        sourceLanguage = self.languages.first ?? ""
-        targetLanguage = self.languages.dropFirst().first ?? ""
+        guard let sourceLanguage = self.languages.first, let targetLanguage = self.languages.dropFirst().first else {
+            updateState(.error)
+            return
+        }
         
+        self.sourceLanguage = sourceLanguage
+        self.targetLanguage = targetLanguage
         updateState(.content)
     }
 }
