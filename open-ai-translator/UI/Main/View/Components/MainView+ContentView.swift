@@ -38,8 +38,3 @@ extension MainView {
         }
     }
 }
-
-#Preview {
-    MainView.ContentView()
-        .environmentObject(MainViewModel.arbitrary())
-}

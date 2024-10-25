@@ -11,10 +11,6 @@ extension MainView.ContentView {
     struct InputView: View {
         @EnvironmentObject var viewModel: MainViewModel
         
-        private var isNeedToShowSecondLevel: Bool {
-            !viewModel.translatedText.isEmpty || !viewModel.sourceText.isEmpty && viewModel.isTranslationError
-        }
-        
         var body: some View {
             VStack(alignment: .leading, spacing: .zero) {
                 TextBlockItem(
@@ -27,33 +23,49 @@ extension MainView.ContentView {
                 )
                 .frame(height: .textEditorHeight)
                 
-                if isNeedToShowSecondLevel {
+                if viewModel.translationState != .empty {
                     Divider()
                         .padding(.spacing12)
+                }
+                
+                switch viewModel.translationState {
+                case .empty:
+                    EmptyView()
                     
-                    if viewModel.isTranslationError {
-                        TranslationErrorView()
-                            .padding(.vertical, .spacing12)
-                    } else {
-                        TextBlockItem(
-                            text: $viewModel.translatedText,
-                            isEditable: false,
-                            buttonIconName: .copyIcon,
-                            buttonAction: {
-                                viewModel.copy()
-                            }
-                        )
-                        .frame(height: .textEditorHeight)
+                case .loading:
+                    HStack {
+                        Spacer()
                         
-                        if viewModel.isTranscriptionEnabled, let transcription = viewModel.transcription {
-                            Text(transcription)
-                                .foregroundStyle(.gray)
-                                .fontDesign(.serif)
-                                .font(.system(size: 14))
-                                .padding(.horizontal, .spacing16)
-                                .padding(.bottom, .spacing12)
-                        }
+                        ProgressView()
+                            .progressViewStyle(.circular)
+                            .padding(.vertical, .spacing16)
+                        
+                        Spacer()
                     }
+                   
+                case .content:
+                    TextBlockItem(
+                        text: $viewModel.translatedText,
+                        isEditable: false,
+                        buttonIconName: .copyIcon,
+                        buttonAction: {
+                            viewModel.copy()
+                        }
+                    )
+                    .frame(height: .textEditorHeight)
+                    
+                    if viewModel.isTranscriptionEnabled, let transcription = viewModel.transcription {
+                        Text(transcription)
+                            .foregroundStyle(.gray)
+                            .fontDesign(.serif)
+                            .font(.system(size: 14))
+                            .padding(.horizontal, .spacing16)
+                            .padding(.bottom, .spacing12)
+                    }
+                    
+                case .error:
+                    TranslationErrorView()
+                        .padding(.vertical, .spacing16)
                 }
             }
             .background(Color.textEditorBackground)
@@ -65,7 +77,7 @@ extension MainView.ContentView {
 extension MainView.ContentView.InputView {
     struct TranslationErrorView: View {
         @EnvironmentObject var viewModel: MainViewModel
-
+        
         var body: some View {
             VStack(alignment: .center, spacing: .spacing8) {
                 Text("Что-то пошло не так. Попробуйте позже через некоторое время.")
@@ -89,7 +101,7 @@ extension MainView.ContentView.InputView {
 
 private extension String {
     static let closeIcon = "xmark"
-    static let copyIcon = "document.on.document"
+    static let copyIcon = "document"
 }
 
 private extension Color {

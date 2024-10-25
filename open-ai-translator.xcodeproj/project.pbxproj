@@ -10,30 +10,14 @@
 		3F14D4BE2CCAEA7D0007FEEC /* BetterCodable in Frameworks */ = {isa = PBXBuildFile; productRef = 3F14D4BD2CCAEA7D0007FEEC /* BetterCodable */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		3F6F7FEF2CC94D800073AE80 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3F6F7FD62CC94D7E0073AE80 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3F6F7FDD2CC94D7E0073AE80;
-			remoteInfo = "open-ai-translator";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		3F6F7FDE2CC94D7E0073AE80 /* open-ai-translator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "open-ai-translator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F6F7FEE2CC94D800073AE80 /* open-ai-translatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "open-ai-translatorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		3F6F7FE02CC94D7E0073AE80 /* open-ai-translator */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "open-ai-translator";
-			sourceTree = "<group>";
-		};
-		3F6F7FF12CC94D800073AE80 /* open-ai-translatorTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "open-ai-translatorTests";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -47,13 +31,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3F6F7FEB2CC94D800073AE80 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -61,7 +38,6 @@
 			isa = PBXGroup;
 			children = (
 				3F6F7FE02CC94D7E0073AE80 /* open-ai-translator */,
-				3F6F7FF12CC94D800073AE80 /* open-ai-translatorTests */,
 				3F6F7FDF2CC94D7E0073AE80 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,7 +46,6 @@
 			isa = PBXGroup;
 			children = (
 				3F6F7FDE2CC94D7E0073AE80 /* open-ai-translator.app */,
-				3F6F7FEE2CC94D800073AE80 /* open-ai-translatorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,29 +76,6 @@
 			productReference = 3F6F7FDE2CC94D7E0073AE80 /* open-ai-translator.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3F6F7FED2CC94D800073AE80 /* open-ai-translatorTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3F6F80052CC94D800073AE80 /* Build configuration list for PBXNativeTarget "open-ai-translatorTests" */;
-			buildPhases = (
-				3F6F7FEA2CC94D800073AE80 /* Sources */,
-				3F6F7FEB2CC94D800073AE80 /* Frameworks */,
-				3F6F7FEC2CC94D800073AE80 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3F6F7FF02CC94D800073AE80 /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				3F6F7FF12CC94D800073AE80 /* open-ai-translatorTests */,
-			);
-			name = "open-ai-translatorTests";
-			packageProductDependencies = (
-			);
-			productName = "open-ai-translatorTests";
-			productReference = 3F6F7FEE2CC94D800073AE80 /* open-ai-translatorTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -136,10 +88,6 @@
 				TargetAttributes = {
 					3F6F7FDD2CC94D7E0073AE80 = {
 						CreatedOnToolsVersion = 16.0;
-					};
-					3F6F7FED2CC94D800073AE80 = {
-						CreatedOnToolsVersion = 16.0;
-						TestTargetID = 3F6F7FDD2CC94D7E0073AE80;
 					};
 				};
 			};
@@ -161,20 +109,12 @@
 			projectRoot = "";
 			targets = (
 				3F6F7FDD2CC94D7E0073AE80 /* open-ai-translator */,
-				3F6F7FED2CC94D800073AE80 /* open-ai-translatorTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3F6F7FDC2CC94D7E0073AE80 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3F6F7FEC2CC94D800073AE80 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -191,22 +131,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3F6F7FEA2CC94D800073AE80 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		3F6F7FF02CC94D800073AE80 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3F6F7FDD2CC94D7E0073AE80 /* open-ai-translator */;
-			targetProxy = 3F6F7FEF2CC94D800073AE80 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		3F6F80002CC94D800073AE80 /* Debug */ = {
@@ -386,44 +311,6 @@
 			};
 			name = Release;
 		};
-		3F6F80062CC94D800073AE80 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZF9YFRTD7G;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "udenjordisk.open-ai-translatorTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/open-ai-translator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/open-ai-translator";
-			};
-			name = Debug;
-		};
-		3F6F80072CC94D800073AE80 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZF9YFRTD7G;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "udenjordisk.open-ai-translatorTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/open-ai-translator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/open-ai-translator";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -441,15 +328,6 @@
 			buildConfigurations = (
 				3F6F80032CC94D800073AE80 /* Debug */,
 				3F6F80042CC94D800073AE80 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3F6F80052CC94D800073AE80 /* Build configuration list for PBXNativeTarget "open-ai-translatorTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3F6F80062CC94D800073AE80 /* Debug */,
-				3F6F80072CC94D800073AE80 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

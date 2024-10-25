@@ -26,9 +26,15 @@ struct MainView: View {
                     
             case .error:
                 FullScreenErrorView()
+            
+            case .empty:
+                EmptyView()
             }
             
             Spacer()
+        }
+        .onTapGesture {
+            UIApplication.shared.endEditing()
         }
         .environmentObject(viewModel)
     }

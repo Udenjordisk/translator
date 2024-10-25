@@ -11,12 +11,14 @@ import Combine
 final class MainViewModel: ObservableObject {
     
     enum State {
+        case empty
         case loading
         case content
         case error
     }
     
     @Published var state: State = .loading
+    @Published var translationState: State = .empty
     
     @Published var languages: [String] = []
     
@@ -26,9 +28,8 @@ final class MainViewModel: ObservableObject {
     
     @Published var sourceText: String = ""
     @Published var translatedText: String = ""
-    @Published var isTranslationError: Bool = false
     @Published var transcription: String? = nil
-    
+        
     @AppStorage("isTranscriptionEnabled") var isTranscriptionEnabled: Bool = true
     @AppStorage("isMeaningsEnabled") var isMeaningsEnabled: Bool = false
     @AppStorage("isOriginalLanguageEnabled") var isOriginalLanguageEnabled: Bool = false
@@ -99,8 +100,11 @@ private extension MainViewModel {
     func translate(_ text: String, from sourceLanguage: String, to targetLanguage: String) async {
         guard !text.isEmpty else {
             await clearTranslationProperties()
-            
             return
+        }
+        
+        Task { @MainActor in
+            translationState = .loading
         }
         
         do {
@@ -113,7 +117,7 @@ private extension MainViewModel {
             await handleTranslationResult(result)
         } catch {
             Task { @MainActor in
-                isTranslationError = true
+                translationState = .error
             }
         }
     }
@@ -127,7 +131,7 @@ private extension MainViewModel {
         meanings = result.meanings
         transcription = result.transcription
         
-        isTranslationError = false
+        translationState = .content
     }
     
     @MainActor
@@ -136,6 +140,7 @@ private extension MainViewModel {
         originalLanguage = nil
         meanings.removeAll()
         transcription = nil
+        translationState = .empty
     }
 }
 
