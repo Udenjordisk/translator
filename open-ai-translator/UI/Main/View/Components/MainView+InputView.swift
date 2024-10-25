@@ -16,7 +16,7 @@ extension MainView.ContentView {
         }
         
         var body: some View {
-            VStack(alignment: .center, spacing: .zero) {
+            VStack(alignment: .leading, spacing: .zero) {
                 TextBlockItem(
                     text: $viewModel.sourceText,
                     placeholder: "Начните вводить текст здесь...",
@@ -44,6 +44,15 @@ extension MainView.ContentView {
                             }
                         )
                         .frame(height: .textEditorHeight)
+                        
+                        if viewModel.isTranscriptionEnabled, let transcription = viewModel.transcription {
+                            Text(transcription)
+                                .foregroundStyle(.gray)
+                                .fontDesign(.serif)
+                                .font(.system(size: 14))
+                                .padding(.horizontal, .spacing16)
+                                .padding(.bottom, .spacing12)
+                        }
                     }
                 }
             }

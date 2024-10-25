@@ -84,37 +84,43 @@ private extension OpenAIMessage {
                 content: """
                 The source language is \(sourceLanguage). Please translate the following text to \(targetLanguage): "\(text)".
 
-                If the input text is a complete word or phrase and has one or more meanings, return the result in the following JSON format with no more than 3 meanings:
+                If the input text is already in \(sourceLanguage), return the result **without the "originalLanguage" field**, and the meanings should be in \(sourceLanguage):
 
                 {
                   "translatedText": "TRANSLATED_TEXT",
-                  "transcription": "TRANSCRIPTION_IF_AVAILABLE",
+                  "transcription": "(PHONETIC_TRANSCRIPTION)",
                   "meanings": [
                     {
                       "title": "TITLE_IN_\(sourceLanguage)",
                       "description": "DESCRIPTION_IN_\(sourceLanguage)"
-                    },
-                    {
-                      "title": "ANOTHER_TITLE_IN_\(sourceLanguage)",
-                      "description": "ANOTHER_DESCRIPTION_IN_\(sourceLanguage)"
-                    },
-                    {
-                      "title": "THIRD_TITLE_IN_\(sourceLanguage)",
-                      "description": "THIRD_DESCRIPTION_IN_\(sourceLanguage)"
                     }
-                  ],
-                  "originalLanguage": "ORIGINAL_LANGUAGE"
+                  ]
                 }
 
-                If the input text has no meaning, is gibberish, or is a numerical expression, return the result without the "meanings" field:
+                If the input text is **not in \(sourceLanguage)**, detect the **correct original language** of the input text and return the result in the following JSON format. The meanings should be in the original language of the input text:
 
                 {
                   "translatedText": "TRANSLATED_TEXT",
-                  "transcription": "TRANSCRIPTION_IF_AVAILABLE",
-                  "originalLanguage": "ORIGINAL_LANGUAGE"
+                  "transcription": "(PHONETIC_TRANSCRIPTION)",
+                  "meanings": [
+                    {
+                      "title": "TITLE_IN_ORIGINAL_LANGUAGE",
+                      "description": "DESCRIPTION_IN_ORIGINAL_LANGUAGE"
+                    }
+                  ],
+                  "originalLanguage": "DETECTED_ORIGINAL_LANGUAGE"
                 }
 
-                If the input text is already in \(sourceLanguage), return the JSON without the "originalLanguage" field. Do not include any extra text or explanations. The response should be valid JSON.
+                The value for "originalLanguage" should correctly represent the actual detected language of the input text, and the meanings should always be in the detected original language.
+
+                If the input text has no meaning, is gibberish, or is a numerical expression, return the result without the "meanings" field but still include the phonetic transcription in parentheses.
+
+                {
+                  "translatedText": "TRANSLATED_TEXT",
+                  "transcription": "(PHONETIC_TRANSCRIPTION)"
+                }
+
+                Ensure that the response is valid JSON and the meanings are always presented in the original language of the input text. Do not include any extra text or explanations.
                 """
             )
         ]

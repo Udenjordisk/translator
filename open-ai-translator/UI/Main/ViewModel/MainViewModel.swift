@@ -81,7 +81,7 @@ private extension MainViewModel {
     func subscribe() {
         Publishers.CombineLatest3($sourceText, $sourceLanguage, $targetLanguage)
             .dropFirst()
-            .debounce(for: 0.3, scheduler: DispatchQueue.main)
+            .debounce(for: 0.5, scheduler: DispatchQueue.global())
             .sink { [weak self] text, sourceLanguage, targetLanguage in
                 guard let self else { return }
                 
@@ -98,9 +98,8 @@ private extension MainViewModel {
     
     func translate(_ text: String, from sourceLanguage: String, to targetLanguage: String) async {
         guard !text.isEmpty else {
-            Task { @MainActor in
-                translatedText = ""
-            }
+            await clearTranslationProperties()
+            
             return
         }
         
@@ -129,6 +128,14 @@ private extension MainViewModel {
         transcription = result.transcription
         
         isTranslationError = false
+    }
+    
+    @MainActor
+    func clearTranslationProperties() {
+        translatedText.removeAll()
+        originalLanguage = nil
+        meanings.removeAll()
+        transcription = nil
     }
 }
 

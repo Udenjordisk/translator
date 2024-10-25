@@ -30,6 +30,8 @@ extension MainView {
                         }
                     } label: {
                         Image(systemName: "gearshape.fill")
+                            .resizable()
+                            .scaledToFit()
                             .frame(width: .spacing24, height: .spacing24)
                             .foregroundStyle(.gray)
                     }
