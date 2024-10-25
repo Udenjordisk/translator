@@ -29,9 +29,9 @@ final class MainViewModel: ObservableObject {
     @Published var isTranslationError: Bool = false
     @Published var transcription: String? = nil
     
-    @Published var isTranscriptionEnabled: Bool = true
-    @Published var isMeaningsEnabled: Bool = false
-    @Published var isOriginalLanguageEnabled: Bool = false
+    @AppStorage("isTranscriptionEnabled") var isTranscriptionEnabled: Bool = true
+    @AppStorage("isMeaningsEnabled") var isMeaningsEnabled: Bool = false
+    @AppStorage("isOriginalLanguageEnabled") var isOriginalLanguageEnabled: Bool = false
     
     @Published var meanings: [TranslationResult.Meaning] = []
     
